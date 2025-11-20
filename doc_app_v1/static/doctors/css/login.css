@@ -1,0 +1,92 @@
+/* login.css — put in static/doctors/css/ */
+
+/* Reset & base */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
+  color:#0f2444;
+  background: linear-gradient(180deg,#eaf9ff 0%,#f6fbfd 45%,#ffffff 100%);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  -webkit-text-size-adjust:100%;
+}
+
+/* topbar */
+.topbar{height:84px;display:flex;align-items:center;padding:0 28px}
+.back-wrap .back{color:#0f2444;text-decoration:none;font-size:14px;opacity:.95}
+
+/* center layout */
+.center-area{
+  display:flex;
+  justify-content:center;
+  padding:48px 20px 120px;
+}
+
+/* card */
+.login-card{
+  width:460px;
+  background:#fff;
+  border-radius:12px;
+  padding:34px 36px;
+  text-align:center;
+  box-shadow:0 22px 40px rgba(15,36,68,0.06);
+}
+.logo-img{
+  width:64px;height:64px;border-radius:50%;object-fit:cover;margin:0 auto 12px;display:block;
+  box-shadow:0 8px 18px rgba(10,170,184,0.08);
+}
+h2{font-size:18px;color:#234b74;margin:2px 0}
+.sub-title{font-size:15px;color:#234b74;margin:8px 0 6px}
+.muted{font-size:13px;color:rgba(15,36,68,0.6);margin-bottom:18px}
+
+/* form */
+.login-form{margin-top:4px}
+.field{margin-bottom:12px;text-align:left}
+label{display:block;font-size:13px;color:#234b74;margin-bottom:6px}
+input[type="email"],input[type="password"]{
+  width:100%;
+  padding:12px 14px;
+  border-radius:8px;
+  border:1px solid rgba(15,36,68,0.06);
+  background:#f4f6f7;
+  font-size:14px;color:#0f2444;
+  outline:none;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.6);
+}
+input:focus{box-shadow:0 0 0 3px rgba(11,99,255,0.06);border-color:rgba(11,99,255,0.14)}
+
+/* errors */
+.field-error{min-height:16px;color:#b00020;font-size:13px;margin-top:6px}
+
+/* button */
+.btn{display:inline-block;padding:12px 18px;border-radius:8px;border:0;font-weight:600;cursor:pointer}
+.btn.primary{
+  width:100%;
+  background:#028f9e;color:white;
+  box-shadow:0 10px 20px rgba(2,143,158,0.12);
+  transition:transform .16s ease;
+}
+.btn.primary:hover{transform:translateY(-3px)}
+.btn.primary:active{transform:translateY(0)}
+
+/* footer text */
+.footer-line{margin-top:14px;font-size:13px;color:rgba(15,36,68,0.6)}
+.footer-line a{color:#0b63ff;text-decoration:none;font-weight:600}
+
+/* toast */
+.toast{
+  position:fixed;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  min-width:220px;padding:10px 14px;border-radius:8px;background:rgba(2,143,158,0.95);color:#fff;display:none;z-index:1200;
+}
+.toast.show{display:block;animation:toast-in .18s ease}
+@keyframes toast-in{from{transform:translateX(-50%) translateY(8px);opacity:0}to{transform:translateX(-50%) translateY(0);opacity:1}}
+
+/* responsive */
+@media (max-width:520px){
+  .login-card{width:92%;padding:22px}
+  .center-area{padding:28px 12px}
+}
