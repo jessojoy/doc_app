@@ -1,0 +1,34 @@
+{% extends "admin/base_admin.html" %}
+{% load static %}
+
+{% block title %}View Doctor{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'admin/css/doctor_form.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="form-card">
+    <div class="form-header">
+        <h2>Doctor Details</h2>
+    </div>
+
+    <div class="readonly-box">
+        <label>Full Name</label>
+        <p>{{ doctor.name }}</p>
+
+        <label>Specialty</label>
+        <p>{{ doctor.specialty }}</p>
+
+        <label>Contact Number</label>
+        <p>{{ doctor.contact }}</p>
+
+        <label>Email Address</label>
+        <p>{{ doctor.email }}</p>
+    </div>
+
+    <a href="/admin-doctors/" class="cancel-btn" style="margin-top: 15px;">Back</a>
+</div>
+
+{% endblock %}

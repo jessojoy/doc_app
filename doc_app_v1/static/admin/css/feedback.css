@@ -1,0 +1,89 @@
+/* Page heading */
+h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* container */
+.feedback-list {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* each card */
+.feedback-card {
+    background: #fff;
+    padding: 22px;
+    border-radius: 14px;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+/* new card style variant */
+.feedback-card.new {
+    background: #faf3ff;
+    border-color: #f1e0ff;
+}
+
+/* header row */
+.feedback-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.patient-name {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.fb-date {
+    color: #777;
+    margin-top: 6px;
+    font-size: 13px;
+}
+
+/* right meta: stars + tag */
+.right-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* stars */
+.stars {
+    display: flex;
+    gap: 4px;
+    font-size: 16px;
+    color: #ffcf33; /* star color */
+}
+.star.dim { color: #e8e8e8; }
+
+/* new tag */
+.tag {
+    background: #8b00ff;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 13px;
+}
+
+/* message */
+.feedback-message {
+    color: #333;
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+/* responsive */
+@media (max-width:900px) {
+    .feedback-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .right-meta { align-self: flex-end; }
+}

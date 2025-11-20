@@ -1,0 +1,48 @@
+{% extends "admin/base_admin.html" %}
+{% load static %}
+
+{% block title %}Patient Feedback{% endblock %}
+{% block feedback_active %}active{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'admin/css/feedback.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<h1>Patient Feedback</h1>
+
+<div class="feedback-list">
+    {% for fb in feedbacks %}
+    <div class="feedback-card {% if fb.is_new %}new{% endif %}">
+        <div class="feedback-header">
+            <div>
+                <p class="patient-name">{{ fb.patient }}</p>
+                <p class="fb-date">{{ fb.date }}</p>
+            </div>
+
+            <div class="right-meta">
+                <div class="stars">
+                    {% for i in "12345" %}
+                        {% if forloop.counter <= fb.rating %}
+                            <span class="star">★</span>
+                        {% else %}
+                            <span class="star dim">★</span>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+                {% if fb.is_new %}
+                <span class="tag">New</span>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="feedback-message">
+            {{ fb.message }}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
