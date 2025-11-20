@@ -1,0 +1,157 @@
+/* register.css - fixed widths so fields don't over-extend */
+
+/* Reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  color: #0f2444;
+  background: linear-gradient(180deg, #eaf9ff 0%, #f0fbfd 45%, #ffffff 100%);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Top bar & back link aligned with card */
+.topbar { height: 64px; display: flex; align-items: center; padding: 0; background: transparent; }
+.back-wrap { width: 100%; max-width: 620px; margin: 0 auto; padding-left: 12px; }
+.back-wrap a { color: #0f2444; text-decoration: none; font-size: 14px; opacity: 0.95; }
+.back-wrap a:hover { opacity: 1; }
+
+/* layout */
+.center-area { display: flex; justify-content: center; padding: 24px 16px 44px; }
+
+/* card */
+.reg-card {
+  width: 100%;
+  max-width: 620px;            /* keep the card compact */
+  background: #fff;
+  border-radius: 12px;
+  padding: 32px 36px;
+  margin: 0 auto;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(15,36,68,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* visual */
+.logo-img { width: 68px; height: 68px; border-radius: 50%; display: block; margin: 0 auto 8px; object-fit: cover; }
+.reg-card h1 { font-size: 18px; color: #234b74; margin-bottom: 4px; }
+.reg-card .subtitle { font-size: 14px; color: rgba(15,36,68,0.65); margin-bottom: 8px; }
+
+/* FORM GRID: center the two columns and cap their width */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns visually */
+  justify-content: center;               /* center columns inside card */
+  gap: 14px 18px;
+  margin-top: 10px;
+  width: 100%;
+  max-width: 520px;  /* <-- total grid width; adjust smaller/larger as needed */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* If a row needs to be single-column, use the single class */
+.form-grid.single {
+  grid-template-columns: 1fr;
+  max-width: 520px;
+}
+
+/* column wrapper: important to allow shrinking and cap width */
+.form-col {
+  min-width: 0;          /* allows column to shrink when necessary */
+  width: 100%;
+  max-width: 250px;      /* cap column width (controls how wide fields become) */
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* labels and inputs */
+label { display: block; font-size: 13px; color: #234b74; margin-bottom: 6px; text-align: left; }
+input, select, textarea {
+  width: 100%;
+  max-width: 250px;     /* match column cap */
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(15,36,68,0.08);
+  background: #f4f6f7;
+  font-size: 14px;
+  color: #0f2444;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+  box-sizing: border-box;
+}
+
+/* focus */
+input:focus, select:focus, textarea:focus {
+  border-color: rgba(11,99,255,0.32);
+  box-shadow: 0 0 0 3px rgba(11,99,255,0.12);
+  outline: none;
+}
+
+/* select arrow adjustments so it won't enlarge control */
+select {
+  appearance: none;
+  padding-right: 32px;
+  background-image:
+    linear-gradient(45deg, transparent 50%, rgba(20,30,40,0.5) 50%),
+    linear-gradient(135deg, rgba(20,30,40,0.5) 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) calc(1em + 2px),
+    calc(100% - 12px) calc(1em + 2px);
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+}
+
+/* single-row defaults: put field(s) in left column */
+.form-grid.single .form-col {
+  grid-column: 1 / 2;
+  max-width: 250px;
+  width: 100%;
+  margin: 0;
+}
+
+/* But the button-col should span both columns (so it behaves like before) */
+.form-grid.single .form-col.button-col {
+  grid-column: 1 / 3;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+
+/* Register button centered and capped */
+.btn.register {
+  width: 100%;
+  max-width: 420px;
+  margin: 14px auto 0 auto;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 8px;
+  background: #028f9e;
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 10px 25px rgba(2,143,158,0.15);
+  transition: transform .16s ease;
+}
+.btn.register:hover { transform: translateY(-3px); }
+
+/* small footer */
+.footer-line { margin-top: 8px; font-size: 14px; color: rgba(15,36,68,0.6); }
+.footer-line a { color: #0b63ff; font-weight: 600; text-decoration: none; }
+.footer-spacer { height: 32px; }
+
+/* responsive behaviour */
+@media (max-width: 680px) {
+  .reg-card { max-width: 94%; padding: 22px; }
+  .form-grid { grid-template-columns: 1fr; max-width: 100%; gap: 12px; }
+  .form-col, input, select, textarea { max-width: 100%; }
+  .btn.register { max-width: 100%; }
+  .back-wrap { padding-left: 10px; }
+}
+
+/* accessibility focus */
+input:focus-visible, select:focus-visible, button:focus-visible {
+  outline: 3px solid rgba(11,99,255,0.12);
+  outline-offset: 2px;
+}

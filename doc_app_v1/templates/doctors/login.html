@@ -1,0 +1,56 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Patient Login — HealthCare Plus</title>
+
+  <!-- Link the CSS file below when using Django static -->
+  <link rel="stylesheet" href="{% static 'doctors/css/login.css' %}">
+</head>
+<body>
+  <header class="topbar">
+    <div class="back-wrap">
+      <a class="back" href="{% url 'doctors:homepage' %}">← Back to Home</a>
+    </div>
+  </header>
+
+  <main class="center-area">
+    <div class="login-card" role="main" aria-labelledby="login-title">
+      {% load static %}
+<img class="logo-img" 
+     src="{% static 'doctors/img/logo.png' %}" 
+     alt="HealthCare Plus logo">
+
+
+      <h2 id="login-title">Welcome Back!</h2>
+      <h3 class="sub-title">Patient Login</h3>
+      <p class="muted">Login with your details to continue</p>
+
+      <form id="loginForm" class="login-form" method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <div class="field">
+          <label for="id_username">Email</label>
+          <input id="id_username" name="username" type="email" placeholder="Email Address" required>
+          <div class="field-error" data-field="username"></div>
+        </div>
+
+        <div class="field">
+          <label for="id_password">Password</label>
+          <input id="id_password" name="password" type="password" placeholder="Password" required>
+          <div class="field-error" data-field="password"></div>
+        </div>
+
+        <button type="submit" class="btn primary" id="loginBtn">Login</button>
+
+        <p class="footer-line">Don't have an account? <a href="{% url 'doctors:register' %}" id="signupLink">Sign Up</a></p>
+      </form>
+
+      <div id="toast" class="toast" aria-live="polite" aria-atomic="true"></div>
+    </div>
+  </main>
+
+  <script src="{% static 'doctors/js/login.js' %}"></script>
+</body>
+</html>
