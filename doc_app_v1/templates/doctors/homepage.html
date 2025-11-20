@@ -1,0 +1,75 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>HealthCare Plus — Landing</title>
+<link rel="stylesheet" href="{% static 'doctors/css/healthcare.css' %}">
+</head>
+<body>
+<header class="topbar">
+<div class="brand">
+<div class="logo">🩺</div>
+<div>
+<h1>HealthCare Plus</h1>
+<p>Professional Medical Services</p>
+</div>
+</div>
+</header>
+
+
+<main class="hero">
+<div class="eyebrow">Avoid Hassles &amp; Delays</div>
+<h2>Find your doctor online. Book appointments quickly &amp; safely.</h2>
+<p>How is health today? Sounds like not good! Don't worry. Find your doctor online. Book as you wish with eDoc. We offer you a free doctor channeling service. Make your appointment now.</p>
+
+
+<section class="cards-wrap" style="margin-top:36px;">
+<article class="card admin">
+<div>
+<div class="icon">👤⚙️</div>
+<h3>Admin Portal</h3>
+<p>Manage doctors, patients, appointments and system operations</p>
+</div>
+<div style="width:100%;display:flex;flex-direction:column;align-items:center">
+<button class="btn-primary" onclick="onPortal('admin')">Admin Login</button>
+</div>
+</article>
+
+
+<article class="card doctor">
+<div>
+<div class="icon">🩺</div>
+<h3>Doctor Portal</h3>
+<p>Manage appointments, view patients and update treatment records</p>
+</div>
+<div style="width:100%;display:flex;flex-direction:column;align-items:center">
+<button class="btn-primary" onclick="onPortal('doctor')">Doctor Login</button>
+</div>
+</article>
+
+
+<article class="card patient">
+<div>
+<div class="icon">👤</div>
+<h3>Patient Portal</h3>
+<p>Book appointments, search doctors and manage your health records</p>
+</div>
+<div style="width:100%;display:flex;flex-direction:column;align-items:center">
+<button class="btn-primary" onclick="onPortal('patient')">Patient Login</button>
+<button class="btn-outline" onclick="onRegister()">Register Now</button>
+</div>
+</article>
+</section>
+
+
+</main>
+
+
+<div class="footer-spacer"></div>
+
+
+<script src="{% static 'doctors/js/healthcare.js' %}"></script>
+</body>
+</html>
