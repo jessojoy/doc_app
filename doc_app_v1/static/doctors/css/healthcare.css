@@ -1,0 +1,147 @@
+body {
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  color: #0f2444;
+  background: linear-gradient(180deg, #eaf9ff 0%, #f0fbfd 50%, #ffffff 100%);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Top bar */
+.topbar {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+  gap: 18px;
+  border-bottom: 1px solid rgba(12,60,100,0.04);
+  background: transparent;
+}
+.brand { display: flex; gap: 12px; align-items: center; }
+.logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: #0b63ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  box-shadow: 0 6px 20px rgba(11,99,255,0.12);
+}
+.brand h1 { font-size: 15px; margin-bottom: 2px; }
+.brand p { font-size: 12px; color: rgba(15,36,68,0.6); }
+
+/* Hero */
+.hero {
+  max-width: 1200px;
+  margin: 48px auto 36px;
+  padding: 0 32px;
+  text-align: center;
+}
+.eyebrow { color: #0b63ff; font-weight: 600; margin-bottom: 18px; }
+.hero h2 { font-size: 28px; color: #154b86; margin-bottom: 14px; }
+.hero p { max-width: 920px; margin: 0 auto; color: rgba(15,36,68,0.7); line-height: 1.6; }
+
+/* Cards */
+.cards-wrap {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 34px;
+}
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 34px 28px;
+  box-shadow: 0 18px 30px rgba(15,36,68,0.06);
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.card .icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  box-shadow: 0 8px 22px rgba(11,99,255,0.06);
+}
+.card h3 { margin-top: 6px; margin-bottom: 8px; font-size: 16px; color: #234b74; }
+.card p { font-size: 13px; color: rgba(15,36,68,0.6); text-align: center; padding: 0 6px; }
+
+.btn-primary {
+  display: inline-block;
+  padding: 12px 26px;
+  border-radius: 8px;
+  border: 0;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 18px;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.btn-outline {
+  display: inline-block;
+  padding: 10px 22px;
+  border-radius: 8px;
+  border: 2px solid rgba(15,36,68,0.12);
+  font-weight: 600;
+  background: transparent;
+  margin-top: 12px;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+/* individual colors */
+.card.admin .icon {
+  background: linear-gradient(180deg,#f7ecff,#f2e7ff);
+  color: #9b3bff;
+}
+.card.admin .btn-primary {
+  background: linear-gradient(90deg,#8b17ff,#9b09ff);
+  color: white;
+}
+
+.card.doctor .icon {
+  background: linear-gradient(180deg,#eaf3ff,#e8f3ff);
+  color: #0b63ff;
+}
+.card.doctor .btn-primary {
+  background: #0b63ff;
+  color: white;
+}
+
+.card.patient .icon {
+  background: linear-gradient(180deg,#e8fcff,#e6fbff);
+  color: #0aaab8;
+}
+.card.patient .btn-primary {
+  background: #028f9e;
+  color: white;
+}
+.card.patient .btn-outline {
+  border-color: #028f9e;
+  color: #028f9e;
+}
+
+/* responsive */
+@media (max-width: 980px) {
+  .cards-wrap { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 680px) {
+  .cards-wrap { grid-template-columns: 1fr; }
+  .topbar { padding: 12px; }
+  .hero { padding: 0 20px; }
+}
+
+/* small touches */
+.footer-spacer { height: 80px; }
+
+/* button hover */
+.btn-primary:hover {
+  transform: translateY(-3px);
+  /* keep transition on base so hover animates */
+}
