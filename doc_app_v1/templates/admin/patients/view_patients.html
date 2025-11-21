@@ -40,7 +40,7 @@
                 <td>{{ patient.last_visit }}</td>
 
                 <td class="actions">
-                    <a href="{% url 'doctors:patient_details' patient.id %}" class="view-btn">👁 View Details</a>
+                    <a href="{% url 'patient_details' patient.id %}" class="view-btn">👁 View Details</a>
                 </td>
             </tr>
             {% endfor %}

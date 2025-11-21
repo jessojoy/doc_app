@@ -9,5 +9,97 @@ Backend needs to be implemented.
 
 Admin page files have been merged without conflicts but pending function for buttons that take you to admin pages.
 
+======= Contributor: jeneesh ========
+2025-11-21
+        ============================================================
+        1. PROJECT STRUCTURE (Admin_module)
+        ============================================================
+
+        MAIN PROJECT FOLDERS AFFECTED:
+
+        doc_app/
+        │
+        ├── doc_app_v1/                     <-- Main Django app
+        │   ├── views.py                   <-- All admin pages (temporary static frontend)
+        │   ├── urls.py                    <-- All admin URLs
+        │   ├── templates/
+        │   │   ├── admin/                 <-- Admin panel HTML files
+        │   │   │   ├── admin_login.html
+        │   │   │   ├── admin_dashboard.html
+        │   │   │   ├── manage_doctors.html
+        │   │   │   ├── patients/
+        │   │   │   │   ├── view_patients.html
+        │   │   │   │   ├── patient_details.html
+        │   │   │   ├── doctors/
+        │   │   │   │   ├── add_doctor.html
+        │   │   │   │   ├── edit_doctor.html
+        │   │   │   │   ├── view_doctor.html
+        │   │   │   └── appointments/
+        │   │   │       ├── appointments.html
+        │   │   
+        │   │
+        │   └── static/
+        │       └── admin/css/             <-- All newly created stylesheets
+        │
+        └── manage.py
+
+
+        ============================================================
+        2. URL ROUTES CREATED (FRONTEND ONLY)
+        ============================================================
+
+        These URLs currently show frontend pages (NO backend functionality yet):
+
+        1. /admin-login/                → Admin login page  
+        2. /admin-dashboard/            → Dashboard page  
+        3. /admin-doctors/              → Doctor listing page  
+        4. /admin-doctor/add/           → Add doctor page  
+        5. /admin-doctor/<id>/edit/     → Edit doctor page  
+        6. /admin-doctor/<id>/view/     → View doctor page  
+        7. /admin-doctor/<id>/delete/   → Delete doctor (temporary dummy)  
+        8. /admin-patients/             → Patients list  
+        9. /admin-patient/<id>/details/ → Patient details  
+        10. /admin-appointments/        → Appointment list  
+        11. /admin-feedback/            → Feedback page  
+        12. /                           → Landing page  
+
+        Backend team MUST connect the database to these endpoints later.
+
+
+        ============================================================
+        3. VIEW FUNCTIONS CREATED
+        ============================================================
+
+        Inside doc_app_v1/views.py:
+
+        - Admin pages:
+        admin_login()
+        admin_dashboard()
+
+        - Doctor CRUD pages:
+        manage_doctors()
+        add_doctor()
+        edit_doctor(id)
+        view_doctor(id)
+        delete_doctor(id)
+
+        - Patients:
+        view_patients()
+        patient_details(id)
+
+        - Appointments:
+        view_appointments()
+
+        - Feedback:
+        view_feedback()
+
+
+
+
+        ============================================================
+        5. LOGOUT/LOGIN (FRONTEND ONLY)
+        ============================================================
+
+        This avoids Django authentication complexity.
 
 

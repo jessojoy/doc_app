@@ -17,8 +17,8 @@
     <div class="card-header">
         <h2>Doctors List</h2>
 
-        <!-- FIXED: Correct URL with namespace -->
-        <a href="{% url 'doctors:add_doctor' %}" class="add-btn">+ Add Doctor</a>
+        <!-- Correct URL, no namespace -->
+        <a href="{% url 'add_doctor' %}" class="add-btn">+ Add Doctor</a>
     </div>
 
     <table class="doctor-table">
@@ -42,11 +42,9 @@
 
                 <td class="actions">
 
-                    <!-- FIXED: Use Django URL tags -->
-                    <a href="{% url 'doctors:view_doctor' doctor.id %}" class="icon-btn">👁</a>
-                    <a href="{% url 'doctors:edit_doctor' doctor.id %}" class="icon-btn">✏️</a>
-
-                    <a href="{% url 'doctors:delete_doctor' doctor.id %}" 
+                    <a href="{% url 'view_doctor' doctor.id %}" class="icon-btn">👁</a>
+                    <a href="{% url 'edit_doctor' doctor.id %}" class="icon-btn">✏️</a>
+                    <a href="{% url 'delete_doctor' doctor.id %}" 
                        class="icon-btn delete"
                        onclick="return confirm('Are you sure you want to delete this doctor?');">
                        🗑

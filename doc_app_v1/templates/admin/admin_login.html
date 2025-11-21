@@ -29,7 +29,8 @@
         <h3>Admin Login</h3>
         <p class="subtitle">Access the administrative dashboard</p>
 
-        <form method="POST" action="{% url 'doctors:admin_login' %}">
+        <form method="POST" action="{% url 'admin_login' %}">
+
 
             {% csrf_token %}
 
