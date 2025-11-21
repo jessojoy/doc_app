@@ -1,9 +1,4 @@
-/* PATIENT DASHBOARD LAYOUT
-   This file is self-contained: it sets up a two-column layout
-   with a fixed-width sidebar and a flexible main area.
-*/
-
-/* Reset / base */
+/* Base reset */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -16,11 +11,11 @@ html, body {
 
 body {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  background: #f4f6fb;
+  background: #f5f7fb;
   color: #16223b;
 }
 
-/* App shell: sidebar + main */
+/* Layout */
 .app-shell {
   display: flex;
   min-height: 100vh;
@@ -29,9 +24,9 @@ body {
 /* Sidebar */
 .sidebar {
   width: 230px;
-  background: #ffffff;
+  background: #fff;
   border-right: 1px solid rgba(15, 36, 68, 0.06);
-  padding: 20px 18px;
+  padding: 18px 18px 24px;
   display: flex;
   flex-direction: column;
 }
@@ -40,7 +35,7 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 24px;
+  margin-bottom: 18px;
 }
 
 .logo-box {
@@ -54,20 +49,19 @@ body {
 }
 
 .logo-box img {
-  width: 26px;
-  height: 26px;
+  width: 24px;
+  height: 24px;
   object-fit: contain;
 }
 
 .brand-text h1 {
   font-size: 14px;
   font-weight: 600;
-  margin-bottom: 2px;
 }
 
 .brand-text p {
   font-size: 11px;
-  color: rgba(15, 36, 68, 0.6);
+  color: rgba(15, 36, 68, 0.65);
 }
 
 /* Sidebar nav */
@@ -75,15 +69,15 @@ body {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
 .nav-item {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 8px 10px;
-  border-radius: 10px;
+  padding: 9px 10px;
+  border-radius: 12px;
   border: none;
   background: transparent;
   cursor: pointer;
@@ -96,7 +90,7 @@ body {
 }
 
 .nav-item:hover {
-  background: rgba(11, 99, 255, 0.06);
+  background: rgba(11, 99, 255, 0.05);
 }
 
 .nav-item.active {
@@ -104,12 +98,12 @@ body {
   box-shadow: inset 0 0 0 1px rgba(11, 99, 255, 0.35);
 }
 
-/* Main area */
+/* Main panel */
 .main {
-  flex: 1;                        /* <-- THIS is what makes it fill the rest of the screen */
+  flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 20px 28px;
+  padding: 18px 32px 32px;
 }
 
 /* Top bar */
@@ -159,7 +153,7 @@ body {
 }
 
 .btn-logout {
-  padding: 6px 12px;
+  padding: 6px 10px;
   border-radius: 999px;
   border: none;
   background: #ffe3e6;
@@ -168,26 +162,25 @@ body {
   cursor: pointer;
 }
 
-/* Content area */
+/* Generic content wrapper */
 .content {
   flex: 1;
   display: flex;
   flex-direction: column;
 }
 
-/* Stat cards row */
+/* Stat cards row (dashboard) */
 .stats-row {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
-  margin-top: 8px;
 }
 
 .stat-card {
-  background: #ffffff;
+  background: #fff;
   border-radius: 14px;
-  padding: 12px 14px;
-  box-shadow: 0 12px 28px rgba(15, 36, 68, 0.05);
+  padding: 14px 16px;
+  box-shadow: 0 16px 40px rgba(15, 36, 68, 0.06);
 }
 
 .stat-header {
@@ -212,21 +205,10 @@ body {
   font-size: 14px;
 }
 
-.stat-icon.teal {
-  background: #e3fbf7;
-}
-
-.stat-icon.blue {
-  background: #e2f1ff;
-}
-
-.stat-icon.purple {
-  background: #f0e7ff;
-}
-
-.stat-icon.pink {
-  background: #ffe5ef;
-}
+.stat-icon.teal { background: #e3fbf7; }
+.stat-icon.blue { background: #e2f1ff; }
+.stat-icon.purple { background: #f0e7ff; }
+.stat-icon.pink { background: #ffe5ef; }
 
 .stat-body {
   display: flex;
@@ -245,40 +227,39 @@ body {
 }
 
 .stat-link {
-  border: none;
-  background: transparent;
   font-size: 11px;
   color: #0b63ff;
+  border: none;
+  background: transparent;
   cursor: pointer;
-  align-self: flex-start;
 }
 
-/* Panels row (Upcoming + Quick Actions) */
+/* Panels row */
 .panel-row {
   display: grid;
-  grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.3fr);
+  grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.4fr);
   gap: 18px;
-  margin-top: 24px;
+  margin-top: 22px;
 }
 
 .panel {
-  background: #ffffff;
+  background: #fff;
   border-radius: 14px;
-  box-shadow: 0 12px 28px rgba(15, 36, 68, 0.05);
   padding: 14px 16px 16px;
+  box-shadow: 0 16px 40px rgba(15, 36, 68, 0.06);
 }
 
 .panel-header h3 {
   font-size: 14px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 /* Upcoming appointments */
 .appointment-list {
-  margin-top: 4px;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin-top: 4px;
 }
 
 .appointment-item {
@@ -305,12 +286,7 @@ body {
   font-size: 12px;
 }
 
-.appt-date {
-  display: block;
-}
-
 .appt-time {
-  display: block;
   color: rgba(15, 36, 68, 0.7);
 }
 
@@ -320,22 +296,28 @@ body {
   justify-content: flex-end;
 }
 
+/* Buttons */
 .btn-primary {
   padding: 10px 16px;
   border-radius: 999px;
   border: none;
   background: #028f9e;
-  color: #ffffff;
+  color: #fff;
   font-size: 13px;
   cursor: pointer;
 }
 
-/* Quick Actions */
+.btn-primary.btn-small {
+  padding: 7px 14px;
+  font-size: 12px;
+}
+
+/* Quick actions */
 .qa-list {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-top: 6px;
+  margin-top: 4px;
 }
 
 .qa-item {
@@ -351,15 +333,95 @@ body {
 }
 
 .qa-item:hover {
-  background: #edf2ff;
+  background: #eef3ff;
 }
 
 .qa-icon {
   font-size: 16px;
 }
 
-/* Responsive tweaks */
-@media (max-width: 980px) {
+/* PROFILE PAGE  */
+.profile-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 20px 24px 24px;
+  box-shadow: 0 16px 40px rgba(15, 36, 68, 0.06);
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.profile-body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.profile-avatar-block {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.profile-avatar-circle {
+  width: 72px;
+  height: 72px;
+  border-radius: 999px;
+  background: #e6f3ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+}
+
+.profile-name {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.profile-email,
+.profile-id {
+  font-size: 13px;
+  color: rgba(15, 36, 68, 0.7);
+}
+
+.profile-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.profile-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.profile-row .full {
+  grid-column: 1 / -1;
+}
+
+.profile-field label {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 4px;
+  color: rgba(15, 36, 68, 0.75);
+}
+
+.profile-input {
+  border-radius: 8px;
+  background: #f6f7fb;
+  padding: 9px 12px;
+  font-size: 13px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
   .stats-row {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -369,7 +431,7 @@ body {
   }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 768px) {
   .app-shell {
     flex-direction: column;
   }
@@ -383,5 +445,9 @@ body {
 
   .main {
     padding: 16px;
+  }
+
+  .profile-row {
+    grid-template-columns: 1fr;
   }
 }

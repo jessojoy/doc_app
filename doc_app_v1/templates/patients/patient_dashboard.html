@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Patient Dashboard — HealthCare Plus</title>
 
-  <link rel="stylesheet" href="{% static 'patients/css/dashboard.css' %}">
+  <link rel="stylesheet" href="{% static 'patients/css/patient_portal.css' %}">
 </head>
 <body>
 <div class="app-shell">
@@ -15,8 +15,7 @@
   <aside class="sidebar">
     <div class="sidebar-header">
       <div class="logo-box">
-        <!-- use your stethoscope logo here -->
-        <img src="{% static 'doctors/img/logo-icon.png' %}" alt="logo">
+        <img src="{% static 'doctors/img/logo-icon.png' %}" alt="HealthCare Plus logo">
       </div>
       <div class="brand-text">
         <h1>HealthCare Plus</h1>
@@ -25,46 +24,50 @@
     </div>
 
     <nav class="nav">
-      <button class="nav-item active" data-section="dashboard">
+      <button
+        class="nav-item active"
+        data-go="{% url 'doctors:patient_dashboard' %}">
         <span class="nav-icon">▢</span>
         <span>Dashboard</span>
       </button>
 
-      <button class="nav-item" data-section="profile">
+      <button
+        class="nav-item"
+        data-go="{% url 'doctors:patient_profile' %}">
         <span class="nav-icon">👤</span>
         <span>Profile</span>
       </button>
 
-      <button class="nav-item" data-section="book">
+      <button class="nav-item" data-go="{% url 'doctors:book_appointment' %}">
         <span class="nav-icon">📅</span>
         <span>Book Appointment</span>
       </button>
 
-      <button class="nav-item" data-section="history">
+
+      <!-- <button class="nav-item" data-go="#">
         <span class="nav-icon">📖</span>
         <span>Booking History</span>
       </button>
 
-      <button class="nav-item" data-section="search">
+      <button class="nav-item" data-go="#">
         <span class="nav-icon">🔍</span>
         <span>Search Doctor</span>
       </button>
 
-      <button class="nav-item" data-section="feedback">
+      <button class="nav-item" data-go="#">
         <span class="nav-icon">💬</span>
         <span>Feedback</span>
-      </button>
+      </button> -->
 
-      <button class="nav-item" data-section="treatments">
+      <!-- <button class="nav-item" data-go="#">
         <span class="nav-icon">📋</span>
         <span>Treatments</span>
-      </button>
+      </button> -->
     </nav>
   </aside>
 
-  <!-- Main area -->
+  <!-- Main -->
   <div class="main">
-
     <!-- Top bar -->
     <header class="topbar">
       <div class="topbar-left">
@@ -79,16 +82,15 @@
         <form action="{% url 'logout' %}" method="post">
           {% csrf_token %}
           <button type="submit" class="btn-logout">
-            <span>⟲</span> Logout
+            ⟲ Logout
           </button>
         </form>
       </div>
     </header>
 
-    <!-- Content -->
     <main class="content">
 
-      <!-- Stat cards row -->
+      <!-- Stat cards -->
       <section class="stats-row">
         <article class="stat-card">
           <div class="stat-header">
@@ -96,7 +98,7 @@
             <div class="stat-icon teal">📅</div>
           </div>
           <div class="stat-body">
-            <span class="stat-number" id="stat-upcoming">2</span>
+            <span class="stat-number">2</span>
             <span class="stat-caption">Next: Nov 15</span>
           </div>
         </article>
@@ -107,7 +109,7 @@
             <div class="stat-icon blue">🕒</div>
           </div>
           <div class="stat-body">
-            <span class="stat-number" id="stat-past">8</span>
+            <span class="stat-number">8</span>
             <span class="stat-caption">Last: Nov 5</span>
           </div>
         </article>
@@ -118,7 +120,7 @@
             <div class="stat-icon purple">💬</div>
           </div>
           <div class="stat-body">
-            <span class="stat-number" id="stat-feedback">3</span>
+            <span class="stat-number">3</span>
             <span class="stat-caption">Recent</span>
           </div>
         </article>
@@ -129,21 +131,20 @@
             <div class="stat-icon pink">📋</div>
           </div>
           <div class="stat-body">
-            <span class="stat-number" id="stat-treatments">5</span>
+            <span class="stat-number">5</span>
             <button class="stat-link">View all</button>
           </div>
         </article>
       </section>
 
-      <!-- Two-column layout: Upcoming + Quick Actions -->
+      <!-- Upcoming + Quick actions -->
       <section class="panel-row">
-        <!-- Upcoming appointments detail -->
-        <article class="panel upcoming">
+        <article class="panel">
           <header class="panel-header">
             <h3>Upcoming Appointments</h3>
           </header>
 
-          <div class="appointment-list" id="upcomingList">
+          <div class="appointment-list">
             <div class="appointment-item">
               <div>
                 <p class="doctor-name">Dr. Sarah Johnson</p>
@@ -172,8 +173,7 @@
           </div>
         </article>
 
-        <!-- Quick actions -->
-        <article class="panel quick-actions">
+        <article class="panel">
           <header class="panel-header">
             <h3>Quick Actions</h3>
           </header>
@@ -183,17 +183,14 @@
               <span class="qa-icon">🔍</span>
               <span>Search for Doctors</span>
             </button>
-
             <button class="qa-item" data-action="viewHistory">
               <span class="qa-icon">📖</span>
               <span>View Booking History</span>
             </button>
-
             <button class="qa-item" data-action="viewTreatments">
               <span class="qa-icon">📋</span>
               <span>View Treatment Records</span>
             </button>
-
             <button class="qa-item" data-action="giveFeedback">
               <span class="qa-icon">💬</span>
               <span>Give Feedback</span>
@@ -206,6 +203,6 @@
   </div>
 </div>
 
-<script src="{% static 'patients/js/dashboard.js' %}"></script>
+<script src="{% static 'patients/js/patient_portal.js' %}"></script>
 </body>
 </html>

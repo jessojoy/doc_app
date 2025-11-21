@@ -25,8 +25,18 @@ urlpatterns = [
     # Appointments
     path("admin-appointments/", views.view_appointments, name="view_appointments"),
 
+
+     # PATIENT URLS
+    path('patient/dashboard/', views.patient_dashboard, name='patient_dashboard'),
+    path('patient/profile/', views.patient_profile, name='patient_profile'),
+    path('patient/book-appointment/', views.book_appointment, name='book_appointment'),
+
+
+
+
     # Feedback
     path("admin-feedback/", views.view_feedback, name="view_feedback"),
+
 
     # Register
     path("register/", views.register, name="register"),

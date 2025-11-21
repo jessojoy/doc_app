@@ -1,17 +1,12 @@
-// dashboard.js – small interactions for patient dashboard
+// Basic behaviour for patient portal sidebar + dashboard buttons
 
 document.addEventListener('DOMContentLoaded', () => {
   const navItems = document.querySelectorAll('.nav-item');
-  const upcomingBtn = document.getElementById('btnNewAppt');
+  const newApptBtn = document.getElementById('btnNewAppt');
 
-  // highlight active nav item + navigate using data-go
+  // Sidebar navigation using data-go
   navItems.forEach(btn => {
     btn.addEventListener('click', () => {
-      // active state
-      navItems.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      // navigate if data-go is set
       const target = btn.getAttribute('data-go');
       if (target && target !== '#') {
         window.location.href = target;
@@ -19,15 +14,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Book new appointment click handler
-  if (upcomingBtn) {
-    upcomingBtn.addEventListener('click', () => {
-      // must match your URL pattern
-      window.location.href = '/patient/book-appointment/';
+  // Hook up "Book New Appointment" button
+  if (newApptBtn) {
+    newApptBtn.addEventListener('click', () => {
+      // Replace with real URL when you create it
+      alert('Connect this button to your "Book Appointment" page.');
     });
   }
 
-  // Quick actions buttons (still just alerts for now)
+  // Quick actions (demo)
   document.querySelectorAll('.qa-item').forEach(btn => {
     btn.addEventListener('click', () => {
       const action = btn.dataset.action;
@@ -43,6 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
           break;
         case 'giveFeedback':
           alert('Give Feedback clicked');
+          break;
+        default:
           break;
       }
     });
