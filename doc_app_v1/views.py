@@ -9,4 +9,7 @@ def homepage(request):
 def register(request):
     return render(request, "doctors/register.html")
 
+def patient_dashboard(request):
+    return render(request, 'patients/patient_dashboard.html')
+
 
