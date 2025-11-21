@@ -57,7 +57,10 @@
 <p>Book appointments, search doctors and manage your health records</p>
 </div>
 <div style="width:100%;display:flex;flex-direction:column;align-items:center">
-<button class="btn-primary" onclick="onPortal('patient')">Patient Login</button>
+<a href="{% url 'login' %}" class="btn-primary">Patient Login</a>
+
+
+
 <a href="/register/" class="btn-outline" style="text-align:center;">Register Now</a>
 </div>
 </article>

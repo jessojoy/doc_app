@@ -6,9 +6,9 @@ from django.contrib.auth import authenticate, login
 
 # Create your views here.
 def homepage(request):
-    return render(request,'doctors/homepage.html')
+    return render(request, 'homepage.html')
 
-  
+
 def admin_login(request):
     if request.method == "POST":
         email = request.POST.get("email")
