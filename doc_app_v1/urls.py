@@ -27,4 +27,9 @@ urlpatterns = [
 
     path('register/', views.register, name='register'),
 
+
+    # Patient dashboard route (note views.)
+    path('patient/dashboard/', views.patient_dashboard, name='patient_dashboard'),
+
+
 ]

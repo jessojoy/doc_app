@@ -63,6 +63,10 @@ def edit_doctor(request, id):
     return render(request, "admin/doctors/edit_doctor.html", {"doctor": doctor})
 
 
+
+def patient_dashboard(request):
+    return render(request, 'patients/patient_dashboard.html')
+
 def view_doctor(request, id):
     doctor = {
         "id": id,
@@ -71,7 +75,6 @@ def view_doctor(request, id):
         "contact": "+1 234-567-8904",
         "email": "robert.w@healthcare.com"
     }
-
     return render(request, "admin/doctors/view_doctor.html", {"doctor": doctor})
   
 def delete_doctor(request, id):

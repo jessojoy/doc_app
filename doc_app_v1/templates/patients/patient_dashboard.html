@@ -1,0 +1,211 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Patient Dashboard — HealthCare Plus</title>
+
+  <link rel="stylesheet" href="{% static 'patients/css/dashboard.css' %}">
+</head>
+<body>
+<div class="app-shell">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo-box">
+        <!-- use your stethoscope logo here -->
+        <img src="{% static 'doctors/img/logo-icon.png' %}" alt="logo">
+      </div>
+      <div class="brand-text">
+        <h1>HealthCare Plus</h1>
+        <p>Patient Portal</p>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <button class="nav-item active" data-section="dashboard">
+        <span class="nav-icon">▢</span>
+        <span>Dashboard</span>
+      </button>
+
+      <button class="nav-item" data-section="profile">
+        <span class="nav-icon">👤</span>
+        <span>Profile</span>
+      </button>
+
+      <button class="nav-item" data-section="book">
+        <span class="nav-icon">📅</span>
+        <span>Book Appointment</span>
+      </button>
+
+      <button class="nav-item" data-section="history">
+        <span class="nav-icon">📖</span>
+        <span>Booking History</span>
+      </button>
+
+      <button class="nav-item" data-section="search">
+        <span class="nav-icon">🔍</span>
+        <span>Search Doctor</span>
+      </button>
+
+      <button class="nav-item" data-section="feedback">
+        <span class="nav-icon">💬</span>
+        <span>Feedback</span>
+      </button>
+
+      <button class="nav-item" data-section="treatments">
+        <span class="nav-icon">📋</span>
+        <span>Treatments</span>
+      </button>
+    </nav>
+  </aside>
+
+  <!-- Main area -->
+  <div class="main">
+
+    <!-- Top bar -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <h2>Dashboard</h2>
+        <p>Welcome back, <span class="patient-name">Patient Name</span></p>
+      </div>
+      <div class="topbar-right">
+        <span class="user-pill">
+          <span class="avatar-circle">P</span>
+          <span class="user-label">Patient</span>
+        </span>
+        <form action="{% url 'logout' %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn-logout">
+            <span>⟲</span> Logout
+          </button>
+        </form>
+      </div>
+    </header>
+
+    <!-- Content -->
+    <main class="content">
+
+      <!-- Stat cards row -->
+      <section class="stats-row">
+        <article class="stat-card">
+          <div class="stat-header">
+            <p>Upcoming Appointments</p>
+            <div class="stat-icon teal">📅</div>
+          </div>
+          <div class="stat-body">
+            <span class="stat-number" id="stat-upcoming">2</span>
+            <span class="stat-caption">Next: Nov 15</span>
+          </div>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-header">
+            <p>Past Visits</p>
+            <div class="stat-icon blue">🕒</div>
+          </div>
+          <div class="stat-body">
+            <span class="stat-number" id="stat-past">8</span>
+            <span class="stat-caption">Last: Nov 5</span>
+          </div>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-header">
+            <p>Feedback Given</p>
+            <div class="stat-icon purple">💬</div>
+          </div>
+          <div class="stat-body">
+            <span class="stat-number" id="stat-feedback">3</span>
+            <span class="stat-caption">Recent</span>
+          </div>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-header">
+            <p>Treatments</p>
+            <div class="stat-icon pink">📋</div>
+          </div>
+          <div class="stat-body">
+            <span class="stat-number" id="stat-treatments">5</span>
+            <button class="stat-link">View all</button>
+          </div>
+        </article>
+      </section>
+
+      <!-- Two-column layout: Upcoming + Quick Actions -->
+      <section class="panel-row">
+        <!-- Upcoming appointments detail -->
+        <article class="panel upcoming">
+          <header class="panel-header">
+            <h3>Upcoming Appointments</h3>
+          </header>
+
+          <div class="appointment-list" id="upcomingList">
+            <div class="appointment-item">
+              <div>
+                <p class="doctor-name">Dr. Sarah Johnson</p>
+                <p class="doctor-specialty">Cardiology</p>
+              </div>
+              <div class="appointment-meta">
+                <span class="appt-date">2024-11-15</span>
+                <span class="appt-time">10:00 AM</span>
+              </div>
+            </div>
+
+            <div class="appointment-item">
+              <div>
+                <p class="doctor-name">Dr. Michael Chen</p>
+                <p class="doctor-specialty">Pediatrics</p>
+              </div>
+              <div class="appointment-meta">
+                <span class="appt-date">2024-11-20</span>
+                <span class="appt-time">02:30 PM</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-footer">
+            <button class="btn-primary" id="btnNewAppt">Book New Appointment</button>
+          </div>
+        </article>
+
+        <!-- Quick actions -->
+        <article class="panel quick-actions">
+          <header class="panel-header">
+            <h3>Quick Actions</h3>
+          </header>
+
+          <div class="qa-list">
+            <button class="qa-item" data-action="searchDoctors">
+              <span class="qa-icon">🔍</span>
+              <span>Search for Doctors</span>
+            </button>
+
+            <button class="qa-item" data-action="viewHistory">
+              <span class="qa-icon">📖</span>
+              <span>View Booking History</span>
+            </button>
+
+            <button class="qa-item" data-action="viewTreatments">
+              <span class="qa-icon">📋</span>
+              <span>View Treatment Records</span>
+            </button>
+
+            <button class="qa-item" data-action="giveFeedback">
+              <span class="qa-icon">💬</span>
+              <span>Give Feedback</span>
+            </button>
+          </div>
+        </article>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<script src="{% static 'patients/js/dashboard.js' %}"></script>
+</body>
+</html>
