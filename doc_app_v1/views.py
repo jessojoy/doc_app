@@ -3,10 +3,12 @@ from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 
 
+
 # Create your views here.
 def homepage(request):
     return render(request,'doctors/homepage.html')
 
+  
 def admin_login(request):
     if request.method == "POST":
         email = request.POST.get("email")
@@ -21,6 +23,7 @@ def admin_login(request):
             return render(request, "admin/admin_login.html", {"error": "Invalid login details"})
 
     return render(request, "admin/admin_login.html")
+  
 def admin_dashboard(request):
 
     context = {
@@ -39,6 +42,7 @@ def admin_dashboard(request):
     }
 
     return render(request, "admin/admin_dashboard.html", context)
+  
 def add_doctor(request):
     if request.method == "POST":
         # Save later...
@@ -69,11 +73,13 @@ def view_doctor(request, id):
     }
 
     return render(request, "admin/doctors/view_doctor.html", {"doctor": doctor})
+  
 def delete_doctor(request, id):
     # TODO: delete from DB in future
     print(f"Doctor with ID {id} deleted")  # debugging output
 
     return redirect("manage_doctors")
+  
 def manage_doctors(request):
     doctors = [
         {"id": 1, "name": "Dr. Sarah Johnson", "specialty": "Cardiology", "contact": "+1 234-567-8901", "email": "sarah@clinic.com"},
@@ -83,6 +89,7 @@ def manage_doctors(request):
     ]
 
     return render(request, "admin/manage_doctors.html", {"doctors": doctors})
+  
 def view_patients(request):
     patients = [
         {"id": "P001", "name": "John Smith", "contact": "+1 234-567-1001", "email": "john.s@email.com", "last_visit": "2024-11-05"},
@@ -111,6 +118,7 @@ def patient_details(request, id):
     }
 
     return render(request, "admin/patients/patient_details.html", {"patient": patient})
+  
 def view_appointments(request):
     appointments = [
         {"id": "A001", "patient": "John Smith", "doctor": "Dr. Sarah Johnson", 
@@ -128,8 +136,8 @@ def view_appointments(request):
         {"id": "A005", "patient": "Michael Davis", "doctor": "Dr. Sarah Johnson",
          "date": "2024-11-10", "time": "03:30 PM", "status": "Cancelled"},
     ]
-
     return render(request, "admin/appointments/appointments.html", {"appointments": appointments})
+  
 def view_feedback(request):
     feedbacks = [
         {
@@ -159,3 +167,6 @@ def view_feedback(request):
     ]
 
     return render(request, "admin/feedback/view_feedback.html", {"feedbacks": feedbacks})
+  
+def register(request):
+    return render(request, "doctors/register.html")

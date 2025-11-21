@@ -7,6 +7,7 @@ urlpatterns = [
     path('', views.homepage, name='homepage'),
     path('homepage/', views.homepage, name='homepage_with_slash'),
 
+
     path('admin-login/', views.admin_login, name="admin_login"),
     path('admin-dashboard/', views.admin_dashboard, name='admin_dashboard'),
 
@@ -22,5 +23,8 @@ urlpatterns = [
     path("admin-patient/<str:id>/details/", views.patient_details, name="patient_details"),
     path("admin-appointments/", views.view_appointments, name="view_appointments"),
     path("admin-feedback/", views.view_feedback, name="view_feedback"),
+
+
+    path('register/', views.register, name='register'),
 
 ]

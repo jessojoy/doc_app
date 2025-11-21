@@ -3,5 +3,5 @@ function onPortal(role){
 alert(role.charAt(0).toUpperCase() + role.slice(1) + ' login clicked');
 }
 function onRegister(){
-alert('Register clicked');
+//alert('Register clicked');
 }
