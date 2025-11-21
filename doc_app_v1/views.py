@@ -8,6 +8,24 @@ from django.contrib.auth import authenticate, login
 def homepage(request):
     return render(request, 'homepage.html')
 
+#======= start of patient functions ==========
+
+# patient registration page function.
+def register(request):
+    return render(request, "doctors/register.html")
+
+def patient_dashboard(request):
+    return render(request, 'patients/patient_dashboard.html')
+
+def patient_profile(request):
+    # Patient profile page (the “My Profile” screen)
+    return render(request, 'patients/profile.html')
+
+def book_appointment(request):
+    return render(request, 'patients/book_appointment.html')
+
+
+# ===== start of admin =======
 
 def admin_login(request):
     if request.method == "POST":
@@ -42,6 +60,24 @@ def admin_dashboard(request):
     }
 
     return render(request, "admin/admin_dashboard.html", context)
+
+def patient_details(request, id):
+    patient = {
+        "id": id,
+        "name": "John Smith",
+        "contact": "+1 234-567-1001",
+        "email": "john.s@email.com",
+        "age": 27,
+        "gender": "Male",
+        "last_visit": "2024-11-05",
+        "treatments": [
+            {"date": "2024-10-20", "doctor": "Dr. Emily Davis", "notes": "Fracture follow-up"},
+            {"date": "2024-11-05", "doctor": "Dr. Sarah Johnson", "notes": "Chest pain consultation"},
+        ]
+    }
+
+    return render(request, "admin/patients/patient_details.html", {"patient": patient})
+ 
   
 def add_doctor(request):
     if request.method == "POST":
@@ -64,8 +100,7 @@ def edit_doctor(request, id):
 
 
 
-def patient_dashboard(request):
-    return render(request, 'patients/patient_dashboard.html')
+
 
 def view_doctor(request, id):
     doctor = {
@@ -105,23 +140,7 @@ def view_patients(request):
     return render(request, "admin/patients/view_patients.html", {"patients": patients})
 
 
-def patient_details(request, id):
-    patient = {
-        "id": id,
-        "name": "John Smith",
-        "contact": "+1 234-567-1001",
-        "email": "john.s@email.com",
-        "age": 27,
-        "gender": "Male",
-        "last_visit": "2024-11-05",
-        "treatments": [
-            {"date": "2024-10-20", "doctor": "Dr. Emily Davis", "notes": "Fracture follow-up"},
-            {"date": "2024-11-05", "doctor": "Dr. Sarah Johnson", "notes": "Chest pain consultation"},
-        ]
-    }
 
-    return render(request, "admin/patients/patient_details.html", {"patient": patient})
-  
 def view_appointments(request):
     appointments = [
         {"id": "A001", "patient": "John Smith", "doctor": "Dr. Sarah Johnson", 
@@ -171,5 +190,4 @@ def view_feedback(request):
 
     return render(request, "admin/feedback/view_feedback.html", {"feedbacks": feedbacks})
   
-def register(request):
-    return render(request, "doctors/register.html")
+

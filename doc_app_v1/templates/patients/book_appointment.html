@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Book Appointment — HealthCare Plus</title>
+
+  <link rel="stylesheet" href="{% static 'patients/css/dashboard.css' %}">
+  <link rel="stylesheet" href="{% static 'patients/css/book_appointment.css' %}">
+</head>
+<body>
+<div class="app-shell">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo-box">
+        <img src="{% static 'doctors/img/logo-icon.png' %}" alt="logo">
+      </div>
+      <div class="brand-text">
+        <h1>HealthCare Plus</h1>
+        <p>Patient Portal</p>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <button class="nav-item" data-go="{% url 'doctors:patient_dashboard' %}">
+        <span class="nav-icon">▢</span><span>Dashboard</span>
+      </button>
+
+      <button class="nav-item" data-go="{% url 'doctors:patient_profile' %}">
+        <span class="nav-icon">👤</span><span>Profile</span>
+      </button>
+
+      <button class="nav-item active" data-go="{% url 'doctors:book_appointment' %}">
+        <span class="nav-icon">📅</span><span>Book Appointment</span>
+      </button>
+
+      <!-- <button class="nav-item" data-go="#">
+        <span class="nav-icon">📖</span><span>Booking History</span>
+      </button>
+
+      <button class="nav-item" data-go="#">
+        <span class="nav-icon">🔍</span><span>Search Doctor</span>
+      </button>
+
+      <button class="nav-item" data-go="#">
+        <span class="nav-icon">💬</span><span>Feedback</span>
+      </button> -->
+
+      <!-- <button class="nav-item" data-go="#">
+        <span class="nav-icon">📋</span><span>Treatments</span>
+      </button> -->
+    </nav>
+  </aside>
+
+  <div class="main">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <h2>Book Appointment</h2>
+      </div>
+      <div class="topbar-right">
+        <span class="user-pill">
+          <span class="avatar-circle">P</span>
+          <span class="user-label">Patient</span>
+        </span>
+        <form action="{% url 'logout' %}" method="post">
+          {% csrf_token %}
+          <button type="submit" class="btn-logout">⟲ Logout</button>
+        </form>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <main class="content book-content">
+      <section class="book-card">
+        <h3>Schedule Your Appointment</h3>
+
+        <div class="book-grid">
+          <!-- full-width row -->
+          <div class="field full">
+            <label for="doctorSelect">Select Doctor</label>
+            <select id="doctorSelect">
+              <option value="">Choose a doctor</option>
+              <option>Dr. Sarah Johnson — Cardiology</option>
+              <option>Dr. Michael Chen — Pediatrics</option>
+              <option>Dr. Emily Davis — Orthopedics</option>
+            </select>
+          </div>
+
+          <!-- left column -->
+          <div class="field">
+            <label for="dateInput">Select Date</label>
+            <input type="text" id="dateInput" placeholder="dd-mm-yyyy">
+          </div>
+
+          <!-- right column -->
+          <div class="field">
+            <label for="timeSlot">Select Time Slot</label>
+            <select id="timeSlot">
+              <option value="">Choose a time slot</option>
+              <option>09:00 AM</option>
+              <option>11:00 AM</option>
+              <option>02:30 PM</option>
+              <option>04:00 PM</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="btn-primary book-btn" id="bookBtn">
+          📅 Book Appointment
+        </button>
+      </section>
+    </main>
+
+  </div>
+</div>
+
+<script src="{% static 'patients/js/book_appointment.js' %}"></script>
+<script src="{% static 'patients/js/dashboard.js' %}"></script>
+</body>
+</html>

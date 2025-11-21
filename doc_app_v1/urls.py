@@ -28,8 +28,12 @@ urlpatterns = [
     path('register/', views.register, name='register'),
 
 
-    # Patient dashboard route (note views.)
+     # PATIENT URLS
     path('patient/dashboard/', views.patient_dashboard, name='patient_dashboard'),
+    path('patient/profile/', views.patient_profile, name='patient_profile'),
+    path('patient/book-appointment/', views.book_appointment, name='book_appointment'),
+
+
 
 
 ]
