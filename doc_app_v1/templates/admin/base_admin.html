@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Admin Panel{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'admin/css/admin_base.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+
+<div class="admin-layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <img src="{% static 'admin/icons/logo.svg' %}" class="logo-icon" alt="">
+            <div>
+                <h2>HealthCare Plus</h2>
+                <p>Admin Portal</p>
+            </div>
+        </div>
+
+        <ul class="menu">
+            <li class="menu-item {% block dash_active %}{% endblock %}">
+                <a href="/admin-dashboard/">
+                    <span class="icon">📊</span> Dashboard
+                </a>
+            </li>
+
+            <li class="menu-item">
+                <a href="/admin-doctors/">
+                    <span class="icon">🧑‍⚕️</span> Manage Doctors
+                </a>
+            </li>
+
+            <li class="menu-item">
+                <a href="/admin-patients/">
+                    <span class="icon">👥</span> View Patients
+                </a>
+            </li>
+
+            <li class="menu-item">
+                <a href="/admin-appointments/">
+                    <span class="icon">📅</span> Appointments
+                </a>
+            </li>
+
+            <li class="menu-item">
+                <a href="/admin-feedback/">
+                    <span class="icon">💬</span> Feedback
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Main content -->
+    <main class="content">
+        <header class="topbar">
+            <a href="/logout/" class="logout-btn">Logout</a>
+        </header>
+
+        <div class="page-content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
+
+</div>
+
+</body>
+</html>

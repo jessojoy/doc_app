@@ -1,0 +1,63 @@
+{% extends "admin/base_admin.html" %}
+{% load static %}
+
+{% block title %}Manage Doctors{% endblock %}
+{% block doctors_active %}active{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'admin/css/manage_doctors.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<h1>Manage Doctors</h1>
+
+<div class="card">
+
+    <div class="card-header">
+        <h2>Doctors List</h2>
+
+        <!-- FIXED: Correct URL with namespace -->
+        <a href="{% url 'doctors:add_doctor' %}" class="add-btn">+ Add Doctor</a>
+    </div>
+
+    <table class="doctor-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Specialty</th>
+                <th>Contact</th>
+                <th>Email</th>
+                <th style="text-align: center;">Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for doctor in doctors %}
+            <tr>
+                <td>{{ doctor.name }}</td>
+                <td>{{ doctor.specialty }}</td>
+                <td>{{ doctor.contact }}</td>
+                <td>{{ doctor.email }}</td>
+
+                <td class="actions">
+
+                    <!-- FIXED: Use Django URL tags -->
+                    <a href="{% url 'doctors:view_doctor' doctor.id %}" class="icon-btn">👁</a>
+                    <a href="{% url 'doctors:edit_doctor' doctor.id %}" class="icon-btn">✏️</a>
+
+                    <a href="{% url 'doctors:delete_doctor' doctor.id %}" 
+                       class="icon-btn delete"
+                       onclick="return confirm('Are you sure you want to delete this doctor?');">
+                       🗑
+                    </a>
+
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}

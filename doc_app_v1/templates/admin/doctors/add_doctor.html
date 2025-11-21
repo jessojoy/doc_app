@@ -1,0 +1,39 @@
+{% extends "admin/base_admin.html" %}
+{% load static %}
+
+{% block title %}Add Doctor{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'admin/css/doctor_form.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="form-card">
+    <div class="form-header">
+        <h2>Add New Doctor</h2>
+    </div>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label>Full Name</label>
+        <input type="text" name="name" placeholder="Dr. John Doe" required>
+
+        <label>Specialty</label>
+        <input type="text" name="specialty" placeholder="Cardiology" required>
+
+        <label>Contact Number</label>
+        <input type="text" name="contact" placeholder="+1 234-567-8900" required>
+
+        <label>Email Address</label>
+        <input type="email" name="email" placeholder="doctor@healthcare.com" required>
+
+        <div class="form-actions">
+            <a href="/admin-doctors/" class="cancel-btn">Cancel</a>
+            <button class="submit-btn">Add Doctor</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

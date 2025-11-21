@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - HealthCare Plus</title>
+
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="{% static 'admin/css/admin_login.css' %}">
+</head>
+
+<body>
+
+<div class="background"></div>
+
+<a href="/" class="back-link">
+    ← Back to Home
+</a>
+
+<div class="login-container">
+    <div class="login-card">
+
+        <div class="logo-circle">
+            <span class="icon">🩺</span>
+        </div>
+
+        <h2>HealthCare Plus</h2>
+        <h3>Admin Login</h3>
+        <p class="subtitle">Access the administrative dashboard</p>
+
+        <form method="POST" action="{% url 'doctors:admin_login' %}">
+
+            {% csrf_token %}
+
+            <label>Email Address</label>
+            <input type="email" name="email" placeholder="admin@healthcare.com" required>
+
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Enter your password" required>
+
+            <button type="submit" class="login-btn">Login</button>
+
+            {% if error %}
+                <p class="error">{{ error }}</p>
+            {% endif %}
+        </form>
+
+
+        <p class="hint">Demo: Use any email and password to login</p>
+
+    </div>
+</div>
+
+</body>
+</html>

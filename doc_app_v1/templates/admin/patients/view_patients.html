@@ -1,0 +1,52 @@
+{% extends "admin/base_admin.html" %}
+{% load static %}
+
+{% block title %}View Patients{% endblock %}
+{% block patients_active %}active{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'admin/css/view_patients.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<h1>View Patients</h1>
+
+<div class="card">
+
+    <div class="search-box">
+        <input type="text" placeholder="Search by name or patient ID...">
+    </div>
+
+    <table class="patient-table">
+        <thead>
+            <tr>
+                <th>Patient ID</th>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>Email</th>
+                <th>Last Visit</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for patient in patients %}
+            <tr>
+                <td>{{ patient.id }}</td>
+                <td>{{ patient.name }}</td>
+                <td>{{ patient.contact }}</td>
+                <td>{{ patient.email }}</td>
+                <td>{{ patient.last_visit }}</td>
+
+                <td class="actions">
+                    <a href="{% url 'doctors:patient_details' patient.id %}" class="view-btn">👁 View Details</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+{% endblock %}
