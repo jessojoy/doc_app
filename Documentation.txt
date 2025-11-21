@@ -1,0 +1,13 @@
+======= Documentation =========
+
+======= Contributor: Jesso ========
+2025-11-21
+
+Worked on patient registration front-end page and also the login front-end page. 
+The name of files need to be fixed as it is generic register.html and login.html which could cause confusion with other logins in the future.
+Backend needs to be implemented.
+
+Admin page files have been merged without conflicts but pending function for buttons that take you to admin pages.
+
+
+
