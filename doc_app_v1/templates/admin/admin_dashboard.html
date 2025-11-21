@@ -1,0 +1,70 @@
+{% extends "admin/base_admin.html" %}
+{% load static %}
+
+{% block title %}Dashboard{% endblock %}
+{% block dash_active %}active{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'admin/css/admin_dashboard.css' %}">
+{% endblock %}
+
+
+{% block content %}
+
+<h1>Dashboard</h1>
+
+<div class="stats-container">
+
+    <div class="stat-card">
+        <div class="stat-text">
+            <h3>Total Doctors</h3>
+            <p class="number">{{ total_doctors }}</p>
+            <span class="small-text">+3 this month</span>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-text">
+            <h3>Total Patients</h3>
+            <p class="number">{{ total_patients }}</p>
+            <span class="small-text">+142 this month</span>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-text">
+            <h3>Appointments Today</h3>
+            <p class="number">{{ appointments_today }}</p>
+            <span class="small-text">{{ pending }} pending</span>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-text">
+            <h3>Feedback Count</h3>
+            <p class="number">{{ feedback_count }}</p>
+            <span class="small-text">{{ unread }} unread</span>
+        </div>
+    </div>
+
+</div>
+
+<!-- Recent Activity -->
+<div class="activity-card">
+
+    <h2>Recent Activity</h2>
+
+    {% for activity in recent_activity %}
+        <div class="activity-item">
+            <div>
+                <p class="activity-title">{{ activity.title }}</p>
+                <p class="activity-user">{{ activity.user }}</p>
+            </div>
+            <p class="activity-time">{{ activity.time }}</p>
+        </div>
+        <hr>
+    {% endfor %}
+
+</div>
+
+{% endblock %}
