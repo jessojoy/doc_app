@@ -102,4 +102,112 @@ Admin page files have been merged without conflicts but pending function for but
 
         This avoids Django authentication complexity.
 
+==== Jesso =====
+
+Developer Notes - Project Overview (Basic Text Version)
+====================================================
+
+----------------------------------------------------
+1. PROJECT FILE STRUCTURE (as of latest update)
+----------------------------------------------------
+
+doc_app/
+│
+├── doc_app/                ← main project settings folder
+│
+├── doc_app_v1/             ← main Django application
+│   ├── views.py
+│   ├── urls.py
+│   ├── models.py
+│   ├── templates/
+│   │   ├── homepage.html
+│   │   ├── doctors/
+│   │   │   ├── register.html
+│   │   │   └── login.html
+│   │   └── patients/
+│   │       ├── patient_dashboard.html
+│   │       ├── profile.html
+│   │       └── book_appointment.html
+│   │
+│   ├── static/
+│   │   └── patients/
+│   │       ├── css/
+│   │       │   ├── dashboard.css
+│   │       │   ├── profile.css
+│   │       │   ├── patient_portal.css
+│   │       │   └── book_appointment.css
+│   │       └── js/
+│   │           ├── dashboard.js
+│   │           ├── profile.js
+│   │           ├── patient_portal.js
+│   │           └── book_appointment.js
+│   │
+│   └── static/doctors/
+│       ├── css/
+│       └── js/
+
+----------------------------------------------------
+2. SUMMARY OF CHANGES MADE TODAY
+----------------------------------------------------
+
+● Added Patient Dashboard Page
+    - patient_dashboard.html created
+    - dashboard.css and dashboard.js added
+    - Navigation sidebar added
+
+● Added Patient Profile Page
+    - profile.html created
+    - profile.css and profile.js added
+    - Sidebar navigation integrated
+
+● Added Book Appointment Page
+    - book_appointment.html created
+    - book_appointment.css + book_appointment.js added
+    - Form elements structured in grid layout
+
+● Updated Navigation Linking
+    - Correct use of namespaced URLs:
+        {% url 'doctors:patient_dashboard' %}
+        {% url 'doctors:patient_profile' %}
+        {% url 'doctors:book_appointment' %}
+
+● Updated JavaScript Navigation
+    - dashboard.js modified to use data-go attributes for navigation
+
+● Updated URL Patterns in doc_app_v1/urls.py
+    - Added:
+        path('patient/dashboard/', patient_dashboard, name='patient_dashboard')
+        path('patient/profile/', patient_profile, name='patient_profile')
+        path('patient/book/', book_appointment, name='book_appointment')
+
+● Fixed Reverse URL Errors
+    - Ensured all patient pages use 'doctors:' namespace consistently
+
+● Added static folders for patient pages
+    - patients/css/*
+    - patients/js/*
+
+----------------------------------------------------
+3. IMPORTANT NOTES
+----------------------------------------------------
+
+- All patient-related pages are inside:
+      doc_app_v1/templates/patients/
+- All patient-related CSS and JS are inside:
+      doc_app_v1/static/patients/css/
+      doc_app_v1/static/patients/js/
+- Always use namespaced URLs:
+      {% url 'doctors:your_route_name' %}
+- dashboard.js controls sidebar navigation using data attributes.
+
+----------------------------------------------------
+4. NEXT STEPS (Recommended)
+----------------------------------------------------
+
+✓ Add backend database models for patients and appointments
+✓ Add authentication for patients (separate from admin)
+✓ Connect the booking form to your database
+✓ Display real appointment and profile data dynamically
+
+
 
