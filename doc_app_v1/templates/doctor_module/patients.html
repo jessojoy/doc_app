@@ -1,0 +1,52 @@
+{% extends 'doctor_module/base.html' %}
+{% block title %}Patients - Doctor Portal{% endblock %}
+
+{% block extra_css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'doctor_module/css/patients.css' %}">
+{% endblock %}
+
+{% block content %}
+  <h1 class="dm-page-title">My Patients</h1>
+
+  <div class="dm-panel">
+    <div class="search-row">
+      <input placeholder="Search by name or patient ID...">
+    </div>
+
+    <div class="patient-card">
+      <div class="patient-avatar">J</div>
+      <div class="patient-body">
+        <h3>John Smith <small class="muted">P001</small></h3>
+        <p class="muted small">Age • Gender • Last Visit</p>
+        <div class="meta-row">
+          <div><strong>45 years</strong><div class="muted">Age</div></div>
+          <div><strong>Male</strong><div class="muted">Gender</div></div>
+          <div><strong>2024-11-10</strong><div class="muted">Last Visit</div></div>
+          <div><strong>3 records</strong><div class="muted">Treatments</div></div>
+        </div>
+      </div>
+      <div class="patient-actions">
+        <button class="btn outline">View Details</button>
+      </div>
+    </div>
+
+    <!-- copy blocks for others -->
+    <div class="patient-card">
+      <div class="patient-avatar">A</div>
+      <div class="patient-body">
+        <h3>Alice Johnson <small class="muted">P002</small></h3>
+        <p class="muted small">Age • Gender • Last Visit</p>
+        <div class="meta-row">
+          <div><strong>32 years</strong><div class="muted">Age</div></div>
+          <div><strong>Female</strong><div class="muted">Gender</div></div>
+          <div><strong>2024-11-09</strong><div class="muted">Last Visit</div></div>
+          <div><strong>5 records</strong><div class="muted">Treatments</div></div>
+        </div>
+      </div>
+      <div class="patient-actions">
+        <button class="btn outline">View Details</button>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -15,4 +15,5 @@ urlpatterns = [
 
     # include app urls (this already brings in /patient/dashboard/)
     path('', include('doc_app_v1.urls')),
+
 ]

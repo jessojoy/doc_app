@@ -1,0 +1,256 @@
+{% extends 'doctor_module/base.html' %}
+{% load static %}
+
+{% block title %}Appointments - Doctor Portal{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'doctor_module/css/appointments.css' %}">
+<!-- small modal-specific CSS (you can move to a separate CSS file if you prefer) -->
+<style>
+/* Modal backdrop */
+.dm-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(23,28,33,0.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1400;
+}
+
+/* Modal card */
+.dm-modal {
+  width: 680px;
+  max-width: calc(100% - 40px);
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 12px 30px rgba(10,20,40,0.15);
+  padding: 24px;
+  position: relative;
+  transform: translateY(-8px);
+}
+
+/* Close button */
+.dm-modal .close {
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* Form fields */
+.dm-modal label { display:block; font-weight:600; margin-bottom:8px; color:#222; }
+.dm-modal textarea, .dm-modal input[type="text"] {
+  width:100%;
+  border-radius:10px;
+  padding:14px;
+  font-size:14px;
+  border:1px solid #e6e9ee;
+  background:#f7f9fb;
+  box-sizing:border-box;
+  resize:vertical;
+  min-height:46px;
+}
+
+/* modal footer */
+.dm-modal-footer {
+  display:flex; justify-content:flex-end; gap:12px; margin-top:18px;
+}
+
+/* Primary button */
+.dm-btn-primary {
+  background:#0a63ff; color:#fff; border:none; padding:10px 16px; border-radius:8px; cursor:pointer;
+  box-shadow: 0 6px 18px rgba(10,99,255,0.18);
+}
+
+/* Secondary button */
+.dm-btn-ghost { background:#fff; border:1px solid #e6e9ee; padding:9px 14px; border-radius:8px; cursor:pointer; }
+
+/* Toast */
+.dm-toast {
+  position: fixed;
+  right: 26px;
+  bottom: 26px;
+  background: #fff;
+  border-radius: 8px;
+  padding: 12px 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  display: none;
+  z-index: 2000;
+}
+
+/* table button small */
+.btn.small { padding:8px 12px; border-radius:8px; background:#0a63ff; color:#fff; border:none; cursor:pointer; box-shadow:0 6px 18px rgba(10,99,255,0.15);}
+</style>
+{% endblock %}
+
+{% block content %}
+  <h1 class="dm-page-title">Appointments</h1>
+
+  <div class="dm-panel">
+    <div class="filter-row">
+      <label>Filter by Date</label>
+      <input type="date" class="date-input">
+    </div>
+
+    <table class="appointments-table" role="grid" aria-labelledby="appointments-table">
+      <thead>
+        <tr><th>Patient Name</th><th>Date</th><th>Time</th><th>Reason</th><th>Status</th><th>Actions</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>John Smith</td>
+          <td>2024-11-12</td>
+          <td>09:00 AM</td>
+          <td>Regular Checkup</td>
+          <td><span class="pill blue">Scheduled</span></td>
+          <td><button class="btn small add-treatment" data-patient="John Smith">+ Add Treatment</button></td>
+        </tr>
+        <tr>
+          <td>Alice Johnson</td>
+          <td>2024-11-12</td>
+          <td>10:30 AM</td>
+          <td>Follow-up</td>
+          <td><span class="pill blue">Scheduled</span></td>
+          <td><button class="btn small add-treatment" data-patient="Alice Johnson">+ Add Treatment</button></td>
+        </tr>
+        <tr>
+          <td>Robert Brown</td>
+          <td>2024-11-11</td>
+          <td>02:00 PM</td>
+          <td>Consultation</td>
+          <td><span class="pill green">Completed</span></td>
+          <td><button class="btn small add-treatment" data-patient="Robert Brown">+ Add Treatment</button></td>
+        </tr>
+        <tr>
+          <td>Emily Wilson</td>
+          <td>2024-11-13</td>
+          <td>11:00 AM</td>
+          <td>Initial Visit</td>
+          <td><span class="pill blue">Scheduled</span></td>
+          <td><button class="btn small add-treatment" data-patient="Emily Wilson">+ Add Treatment</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modal (hidden by default) -->
+  <div id="treatmentBackdrop" class="dm-modal-backdrop" aria-hidden="true">
+    <div class="dm-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="close" id="modalClose" aria-label="Close">&times;</button>
+      <h3 id="modalTitle">Add Treatment — <span id="modalPatientName">Patient</span></h3>
+
+      <!-- Frontend-only: prevent default submit and show toast instead -->
+      <form id="treatmentForm">
+        <div style="margin-top:16px;">
+          <label for="treatmentDesc">Treatment Description</label>
+          <textarea id="treatmentDesc" name="description" placeholder="Describe the treatment provided..." required></textarea>
+        </div>
+
+        <div style="margin-top:12px;">
+          <label for="medicines">Medicines Prescribed</label>
+          <textarea id="medicines" name="medicines" placeholder="List medicines and dosages..."></textarea>
+        </div>
+
+        <div style="margin-top:12px;">
+          <label for="notes">Additional Notes</label>
+          <textarea id="notes" name="notes" placeholder="Any additional notes or recommendations..."></textarea>
+        </div>
+
+        <div class="dm-modal-footer">
+          <button type="button" class="dm-btn-ghost" id="modalCancel">Cancel</button>
+          <button type="submit" class="dm-btn-primary" id="saveTreatment">Save Treatment</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- toast -->
+  <div id="dmToast" class="dm-toast" role="status" aria-live="polite">
+    <strong id="dmToastText">Treatment saved</strong>
+  </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+(function(){
+  const backdrop = document.getElementById('treatmentBackdrop');
+  const modalPatientName = document.getElementById('modalPatientName');
+  const addButtons = document.querySelectorAll('.add-treatment');
+  const modalClose = document.getElementById('modalClose');
+  const modalCancel = document.getElementById('modalCancel');
+  const treatmentForm = document.getElementById('treatmentForm');
+  const toast = document.getElementById('dmToast');
+  const toastText = document.getElementById('dmToastText');
+
+  function openModal(patientName) {
+    modalPatientName.textContent = patientName;
+    // clear previous values
+    document.getElementById('treatmentDesc').value = '';
+    document.getElementById('medicines').value = '';
+    document.getElementById('notes').value = '';
+    backdrop.style.display = 'flex';
+    backdrop.setAttribute('aria-hidden','false');
+    // set focus
+    document.getElementById('treatmentDesc').focus();
+  }
+
+  function closeModal() {
+    backdrop.style.display = 'none';
+    backdrop.setAttribute('aria-hidden','true');
+  }
+
+  addButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const patient = btn.dataset.patient || 'Patient';
+      openModal(patient);
+    });
+  });
+
+  modalClose.addEventListener('click', closeModal);
+  modalCancel.addEventListener('click', closeModal);
+
+  // close on backdrop click (but not when clicking inside modal)
+  backdrop.addEventListener('click', function(e){
+    if (e.target === backdrop) closeModal();
+  });
+
+  // handle form submit — frontend-only: show toast, close modal
+  treatmentForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    const data = {
+      patient: modalPatientName.textContent,
+      description: document.getElementById('treatmentDesc').value.trim(),
+      medicines: document.getElementById('medicines').value.trim(),
+      notes: document.getElementById('notes').value.trim(),
+      timestamp: new Date().toISOString()
+    };
+
+    // For now we do frontend-only behaviour:
+    // - show success toast
+    // - close modal
+    // If you want to POST to backend, replace this with fetch() to your endpoint.
+    showToast('Treatment saved for ' + data.patient);
+    closeModal();
+
+    // Optional: log to console so backend dev can see example payload
+    console.log('Treatment payload (frontend-only):', data);
+  });
+
+  // toast helper
+  let toastTimer = null;
+  function showToast(msg, ms = 2800) {
+    toastText.textContent = msg;
+    toast.style.display = 'block';
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      toast.style.display = 'none';
+    }, ms);
+  }
+
+})();
+</script>
+{% endblock %}

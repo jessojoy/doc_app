@@ -1,0 +1,9 @@
+.dm-panel{background:var(--card-bg);border-radius:12px;padding:18px;border:1px solid var(--accent-border);box-shadow:var(--shadow)}
+.search-row input{width:100%;padding:12px;border-radius:10px;border:1px solid var(--accent-border);background:#fafafa}
+.patient-card{display:flex;align-items:center;gap:18px;padding:18px;border-radius:12px;border:1px solid #f1f3f6;margin-top:14px;background:#fff}
+.patient-avatar{width:56px;height:56px;border-radius:999px;background:#eaf3ff;display:flex;align-items:center;justify-content:center;font-weight:700;color:#1763ff}
+.patient-body h3{margin:0}
+.patient-body .muted{color:var(--muted)}
+.meta-row{display:flex;gap:18px;margin-top:10px}
+.patient-actions{margin-left:auto}
+.btn.outline{background:#fff;border:1px solid var(--accent-border);padding:8px 14px;border-radius:10px}

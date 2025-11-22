@@ -31,5 +31,12 @@ urlpatterns = [
     # Patient dashboard route (note views.)
     path('patient/dashboard/', views.patient_dashboard, name='patient_dashboard'),
 
+    # Doctor_module route
+    path('doctor_module/login/', views.doctor_login, name='doctor_module_login'),
+    path('doctor_module/dashboard/', views.doctor_dashboard, name='doctor_module_dashboard'),
+    path('doctor_module/profile/', views.doctor_profile, name='doctor_module_profile'),
+    path('doctor_module/appointments/', views.doctor_appointments, name='doctor_module_appointments'),
+    path('doctor_module/patients/', views.doctor_patients, name='doctor_module_patients'),
+
 
 ]

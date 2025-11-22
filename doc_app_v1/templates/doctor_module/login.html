@@ -1,0 +1,51 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doctor Login – HealthCare Plus</title>
+
+    <!-- Doctor Module CSS -->
+    <link rel="stylesheet" href="{% static 'doctor_module/css/login.css' %}">
+</head>
+
+<body>
+
+<header class="topbar">
+    <div class="back-wrap">
+        <a class="back" href="{% url 'doctors:homepage' %}">← Back to Home</a>
+    </div>
+</header>
+
+<main class="center-area">
+    <div class="login-card">
+        
+        <div class="icon-circle">
+            <span class="icon">🩺</span>
+        </div>
+
+        <h2>HealthCare Plus</h2>
+        <h3 class="sub-title">Doctor Login</h3>
+        <p class="muted">Access your professional dashboard</p>
+
+        <form method="POST" action="">
+            {% csrf_token %}
+            
+            <label>Email Address</label>
+            <input type="email" name="email" placeholder="doctor@healthcare.com" required>
+
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Enter your password" required>
+
+            <button type="submit" class="login-btn">Login</button>
+
+            <p class="demo">Demo: Use any email and password to login</p>
+        </form>
+
+    </div>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+.dm-panel{background:var(--card-bg);border-radius:12px;padding:18px;border:1px solid var(--accent-border);box-shadow:var(--shadow)}
+.filter-row{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.date-input{padding:12px;border-radius:8px;border:1px solid var(--accent-border);background:#fafafa}
+.appointments-table{width:100%;border-collapse:collapse;margin-top:12px}
+.appointments-table th{background:transparent;text-align:left;padding:14px;border-bottom:1px solid #f1f3f6}
+.appointments-table td{padding:14px;border-bottom:1px solid #f7f8fa}
+.pill{display:inline-block;padding:6px 10px;border-radius:999px;font-size:13px}
+.pill.blue{background:#eaf2ff;color:#1763ff}
+.pill.green{background:#e9fdf0;color:#0aa05d}
+.btn.small{border-radius:10px}

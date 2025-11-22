@@ -1,0 +1,138 @@
+{% extends 'doctor_module/base.html' %}
+{% block title %}Dashboard - Doctor Portal{% endblock %}
+
+{% block extra_css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'doctor_module/css/dashboard.css' %}">
+{% endblock %}
+
+{% block content %}
+  <h1 class="dm-page-title">Dashboard</h1>
+
+  <section class="dm-stats-row">
+    <article class="dm-stat-card">
+      <div class="dm-stat-left">
+        <p class="dm-stat-title">Upcoming Appointments</p>
+        <h2 class="dm-stat-number">12</h2>
+        <p class="dm-stat-small">Today: 4</p>
+      </div>
+      <div class="dm-stat-icon icon-blue">
+        <!-- small calendar svg -->
+        <svg viewBox="0 0 24 24"><rect rx="3" width="48" height="48" fill="none"></rect>
+          <path d="M7 10h10M7 14h10" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path>
+          <rect x="6" y="4" width="12" height="12" rx="3" fill="#1763ff"></rect>
+          <text x="12" y="13.2" fill="#fff" font-size="6" text-anchor="middle" font-family="sans-serif">12</text>
+        </svg>
+      </div>
+    </article>
+
+    <article class="dm-stat-card">
+      <div class="dm-stat-left">
+        <p class="dm-stat-title">Total Patients</p>
+        <h2 class="dm-stat-number">156</h2>
+        <p class="dm-stat-small">+8 this week</p>
+      </div>
+      <div class="dm-stat-icon icon-teal">
+        <svg viewBox="0 0 24 24"><rect rx="6" width="48" height="48" fill="none"/><rect x="6" y="6" width="12" height="12" rx="3" fill="#02b3c7"></rect>
+          <path d="M9 11h6M9 14h4" stroke="#fff" stroke-width="1.6" stroke-linecap="round"></path>
+        </svg>
+      </div>
+    </article>
+
+    <article class="dm-stat-card">
+      <div class="dm-stat-left">
+        <p class="dm-stat-title">New Feedback</p>
+        <h2 class="dm-stat-number">23</h2>
+        <p class="dm-stat-small">5 unread</p>
+      </div>
+      <div class="dm-stat-icon icon-purple">
+        <svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="3" fill="#8f3cff"></rect><path d="M9 11h6" stroke="#fff" stroke-linecap="round" stroke-width="1.6"/></svg>
+      </div>
+    </article>
+
+    <article class="dm-stat-card">
+      <div class="dm-stat-left">
+        <p class="dm-stat-title">Profile Completion</p>
+        <h2 class="dm-stat-number">95%</h2>
+        <p class="dm-stat-small">Almost done</p>
+      </div>
+      <div class="dm-stat-icon icon-green">
+        <svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="3" fill="#11b34a"></rect><path d="M9 11h6" stroke="#fff" stroke-linecap="round" stroke-width="1.6"/></svg>
+      </div>
+    </article>
+  </section>
+
+  <section class="dm-data-section">
+    <div class="dm-data-card left">
+      <h3>Today's Appointments</h3>
+
+      <div class="dm-item">
+        <div>
+          <h4>John Smith</h4>
+          <p class="muted">Regular Checkup</p>
+        </div>
+        <div class="dm-time">09:00 AM</div>
+      </div>
+
+      <div class="dm-item">
+        <div>
+          <h4>Alice Johnson</h4>
+          <p class="muted">Follow-up</p>
+        </div>
+        <div class="dm-time">10:30 AM</div>
+      </div>
+
+      <div class="dm-item">
+        <div>
+          <h4>Robert Brown</h4>
+          <p class="muted">Consultation</p>
+        </div>
+        <div class="dm-time">02:00 PM</div>
+      </div>
+
+      <div class="dm-item">
+        <div>
+          <h4>Emily Wilson</h4>
+          <p class="muted">Initial Visit</p>
+        </div>
+        <div class="dm-time">03:30 PM</div>
+      </div>
+    </div>
+
+    <div class="dm-data-card right">
+      <h3>Recent Patients</h3>
+
+      <div class="dm-item">
+        <div>
+          <h4>Michael Davis</h4>
+          <p class="muted">Recovery</p>
+        </div>
+        <div class="dm-time">2024-11-10</div>
+      </div>
+
+      <div class="dm-item">
+        <div>
+          <h4>Sarah Williams</h4>
+          <p class="muted">Stable</p>
+        </div>
+        <div class="dm-time">2024-11-09</div>
+      </div>
+
+      <div class="dm-item">
+        <div>
+          <h4>David Martin</h4>
+          <p class="muted">Improving</p>
+        </div>
+        <div class="dm-time">2024-11-08</div>
+      </div>
+
+      <div class="dm-item">
+        <div>
+          <h4>Lisa Anderson</h4>
+          <p class="muted">Under Treatment</p>
+        </div>
+        <div class="dm-time">2024-11-07</div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

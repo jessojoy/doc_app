@@ -1,0 +1,207 @@
+{% extends "doctor_module/base.html" %}
+{% load static %}
+
+{% block title %}My Profile{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'doctor_module/css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="profile-page">
+  <h2 class="page-title">My Profile</h2>
+
+  <!-- card -->
+  <div class="profile-card">
+
+    <div class="profile-header">
+      <div class="profile-avatar" aria-hidden="true">
+        <!-- svg avatar -->
+        <svg viewBox="0 0 24 24" width="72" height="72">
+          <circle cx="12" cy="8" r="4" fill="#e6f0ff"/>
+          <path d="M4 20c2-5 14-5 16 0" fill="#e6f0ff"/>
+        </svg>
+      </div>
+
+      <div class="profile-basic">
+        <h3 id="v_name">{{ doctor.name }}</h3>
+        <p class="spec" id="v_specialty">{{ doctor.specialty }}</p>
+        <p class="qual" id="v_qual">{{ doctor.qualification }}</p>
+      </div>
+
+      <div class="profile-actions">
+        <button id="editBtn" class="btn-primary" onclick="enableEdit()">Edit Profile</button>
+      </div>
+    </div>
+
+    <div class="profile-body">
+      <div class="profile-grid">
+        <div class="field">
+          <label>Full Name</label>
+          <p id="v_name_field">{{ doctor.name }}</p>
+        </div>
+
+        <div class="field">
+          <label>Email Address</label>
+          <p id="v_email">{{ doctor.email }}</p>
+        </div>
+
+        <div class="field">
+          <label>Phone Number</label>
+          <p id="v_phone">{{ doctor.phone }}</p>
+        </div>
+
+        <div class="field">
+          <label>Specialty</label>
+          <p id="v_specialty_field">{{ doctor.specialty }}</p>
+        </div>
+
+        <div class="field">
+          <label>Qualification</label>
+          <p id="v_qual_field">{{ doctor.qualification }}</p>
+        </div>
+
+        <div class="field">
+          <label>Experience</label>
+          <p id="v_exp">{{ doctor.experience }} years</p>
+        </div>
+
+        <div class="field bio full">
+          <label>Bio</label>
+          <p id="v_bio">{{ doctor.bio }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDIT FORM (hidden, frontend-only switch) -->
+  <div id="editCard" class="profile-card edit-card" style="display:none;">
+    <div class="profile-header">
+      <div class="profile-avatar" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="72" height="72">
+          <circle cx="12" cy="8" r="4" fill="#e6f0ff"/>
+          <path d="M4 20c2-5 14-5 16 0" fill="#e6f0ff"/>
+        </svg>
+      </div>
+
+      <div class="profile-basic">
+        <h3>Edit Profile</h3>
+        <p class="spec">Update your doctor details</p>
+      </div>
+
+      <div class="profile-actions">
+        <button class="btn-muted" onclick="cancelEdit()">Cancel</button>
+        <button class="btn-primary" onclick="saveEdit()">Save Changes</button>
+      </div>
+    </div>
+
+    <div class="profile-body">
+      <div class="profile-grid">
+        <div class="field">
+          <label>Full Name</label>
+          <input id="e_name" type="text" value="{{ doctor.name }}">
+        </div>
+
+        <div class="field">
+          <label>Email Address</label>
+          <input id="e_email" type="email" value="{{ doctor.email }}">
+        </div>
+
+        <div class="field">
+          <label>Phone Number</label>
+          <input id="e_phone" type="text" value="{{ doctor.phone }}">
+        </div>
+
+        <div class="field">
+          <label>Specialty</label>
+          <input id="e_specialty" type="text" value="{{ doctor.specialty }}">
+        </div>
+
+        <div class="field">
+          <label>Qualification</label>
+          <input id="e_qual" type="text" value="{{ doctor.qualification }}">
+        </div>
+
+        <div class="field">
+          <label>Experience</label>
+          <input id="e_exp" type="text" value="{{ doctor.experience }}">
+        </div>
+
+        <div class="field bio full">
+          <label>Bio</label>
+          <textarea id="e_bio" rows="4">{{ doctor.bio }}</textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // grab nodes
+  const viewCard = document.querySelector('.profile-card:not(.edit-card)');
+  const editCard = document.getElementById('editCard');
+
+  // view elements
+  const v_name = document.getElementById('v_name');
+  const v_name_field = document.getElementById('v_name_field');
+  const v_email = document.getElementById('v_email');
+  const v_phone = document.getElementById('v_phone');
+  const v_specialty_field = document.getElementById('v_specialty_field');
+  const v_qual_field = document.getElementById('v_qual_field');
+  const v_exp = document.getElementById('v_exp');
+  const v_bio = document.getElementById('v_bio');
+
+  // edit inputs
+  const e_name = document.getElementById('e_name');
+  const e_email = document.getElementById('e_email');
+  const e_phone = document.getElementById('e_phone');
+  const e_specialty = document.getElementById('e_specialty');
+  const e_qual = document.getElementById('e_qual');
+  const e_exp = document.getElementById('e_exp');
+  const e_bio = document.getElementById('e_bio');
+
+  function enableEdit(){
+    // fill edit inputs from view
+    e_name.value = v_name.innerText.trim();
+    e_email.value = v_email.innerText.trim();
+    e_phone.value = v_phone.innerText.trim();
+    e_specialty.value = v_specialty_field.innerText.trim();
+    e_qual.value = v_qual_field.innerText.trim();
+    // remove trailing " years" if present
+    e_exp.value = v_exp.innerText.trim().replace(' years','').trim();
+    e_bio.value = v_bio.innerText.trim();
+
+    viewCard.style.display = 'none';
+    editCard.style.display = 'block';
+    window.scrollTo({ top: editCard.offsetTop - 60, behavior: 'smooth' });
+  }
+
+  function cancelEdit(){
+    editCard.style.display = 'none';
+    viewCard.style.display = 'block';
+  }
+
+  function saveEdit(){
+    // update view UI (frontend-only)
+    v_name.innerText = e_name.value;
+    v_name_field.innerText = e_name.value;
+    v_email.innerText = e_email.value;
+    v_phone.innerText = e_phone.value;
+    v_specialty_field.innerText = e_specialty.value;
+    v_qual_field.innerText = e_qual.value;
+    v_exp.innerText = e_exp.value ? (e_exp.value + ' years') : '';
+    v_bio.innerText = e_bio.value;
+
+    // hide edit
+    editCard.style.display = 'none';
+    viewCard.style.display = 'block';
+
+    // small toast/alert - frontend only
+    const msg = document.createElement('div');
+    msg.className = 'profile-toast';
+    msg.innerText = 'Profile updated successfully (frontend only)';
+    document.body.appendChild(msg);
+    setTimeout(()=> msg.classList.add('show'), 20);
+    setTimeout(()=> { msg.classList.remove('show'); setTimeout(()=> msg.remove(),300); }, 3000);
+  }
+</script>
+{% endblock %}

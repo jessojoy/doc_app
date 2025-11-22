@@ -1,0 +1,74 @@
+{% extends "doctor_module/base.html" %}
+{% load static %}
+
+{% block title %}Edit Profile{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'doctor_module/css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="profile-page">
+  <h2 class="page-title">My Profile</h2>
+
+  <form method="post" class="profile-card server-edit-form">
+    {% csrf_token %}
+    <div class="profile-header">
+      <div class="profile-avatar" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="72" height="72">
+          <circle cx="12" cy="8" r="4" fill="#e6f0ff"/>
+          <path d="M4 20c2-5 14-5 16 0" fill="#e6f0ff"/>
+        </svg>
+      </div>
+
+      <div class="profile-basic">
+        <h3>Edit Profile</h3>
+        <p class="spec">Update your details</p>
+      </div>
+
+      <div class="profile-actions">
+        <a href="{% url 'doctors:doctor_module_profile' %}" class="btn-muted">Cancel</a>
+        <button class="btn-primary" type="submit">Save Changes</button>
+      </div>
+    </div>
+
+    <div class="profile-body">
+      <div class="profile-grid">
+        <div class="field">
+          <label>Full Name</label>
+          <input type="text" name="name" value="{{ doctor.name }}">
+        </div>
+
+        <div class="field">
+          <label>Email Address</label>
+          <input type="email" name="email" value="{{ doctor.email }}">
+        </div>
+
+        <div class="field">
+          <label>Phone Number</label>
+          <input type="text" name="phone" value="{{ doctor.phone }}">
+        </div>
+
+        <div class="field">
+          <label>Specialty</label>
+          <input type="text" name="specialty" value="{{ doctor.specialty }}">
+        </div>
+
+        <div class="field">
+          <label>Qualification</label>
+          <input type="text" name="qualification" value="{{ doctor.qualification }}">
+        </div>
+
+        <div class="field">
+          <label>Experience</label>
+          <input type="text" name="experience" value="{{ doctor.experience }}">
+        </div>
+
+        <div class="field bio full">
+          <label>Bio</label>
+          <textarea name="bio" rows="4">{{ doctor.bio }}</textarea>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+{% endblock %}

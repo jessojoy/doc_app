@@ -1,0 +1,10 @@
+<!-- logo.svg - rounded square with stethoscope -->
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <rect rx="18" ry="18" width="128" height="128" fill="#0d6efd"></rect>
+  <g transform="translate(18,18)" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <!-- stethoscope circle -->
+    <path d="M50 18c0 11-9 20-20 20S10 29 10 18"></path>
+    <path d="M60 44v18a14 14 0 0 1-28 0V44"></path>
+    <circle cx="54" cy="18" r="6" fill="#fff" stroke="none"></circle>
+  </g>
+</svg>

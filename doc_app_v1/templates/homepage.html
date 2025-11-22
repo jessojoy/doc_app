@@ -39,16 +39,15 @@
 
 
 <article class="card doctor">
-<div>
-<div class="icon">🩺</div>
-<h3>Doctor Portal</h3>
-<p>Manage appointments, view patients and update treatment records</p>
-</div>
-<div style="width:100%;display:flex;flex-direction:column;align-items:center">
-<button class="btn-primary" onclick="onPortal('doctor')">Doctor Login</button>
-</div>
-</article>
+    <div>
+        <div class="icon">🩺</div>
+        <h3>Doctor Portal</h3>
+        <p>Manage appointments, view patients and update treatment records</p>
+    </div>
 
+    <div style="width:100%;display:flex;flex-direction:column;align-items:center">
+        <a href="{% url 'doctors:doctor_module_login' %}" class="btn-primary">Doctor Login</a>
+</article>
 
 <article class="card patient">
 <div>

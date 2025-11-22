@@ -1,0 +1,7 @@
+<!-- ic-feedback.svg - chat bubble with dots -->
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 24 24">
+  <path d="M3 5c0-1.1.9-2 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H8l-5 3V5z" fill="#8a2be2"></path>
+  <circle cx="8" cy="11" r="0.9" fill="#fff"></circle>
+  <circle cx="12" cy="11" r="0.9" fill="#fff"></circle>
+  <circle cx="16" cy="11" r="0.9" fill="#fff"></circle>
+</svg>

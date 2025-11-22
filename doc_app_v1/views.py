@@ -173,3 +173,53 @@ def view_feedback(request):
   
 def register(request):
     return render(request, "doctors/register.html")
+
+
+
+
+
+def doctor_login(request):
+    if request.method == "POST":
+        # TEMP: Ignore credentials, always login successfully
+        return redirect('doctors:doctor_module_dashboard')
+
+    # GET request → Show login page
+    return render(request, 'doctor_module/login.html')
+
+def doctor_dashboard(request):
+    return render(request, 'doctor_module/dashboard.html')
+
+def doctor_profile(request):
+    # TODO: replace static context with actual DB data later
+     doctor = {
+        "name": "Dr. Sarah Smith",
+        "email": "sarah.j@healthcare.com",
+        "phone": "+1 234-567-8901",
+        "specialty": "Cardiology",
+        "qualification": "MD, FACC",
+        "experience": "15 years",
+        "bio": "Experienced cardiologist specializing in preventive cardiology and heart disease management."
+        }
+
+     return render(request, "doctor_module/profile.html", {"doctor": doctor})
+
+def doctor_appointments(request):
+    # TODO: get appointments from DB
+    return render(request, 'doctor_module/appointments.html')
+
+def doctor_patients(request):
+    # TODO: get patient list from DB
+    return render(request, 'doctor_module/patients.html')
+
+def doctor_profile_edit(request):
+    doctor = {
+        "name": "Dr. Sarah Smith",
+        "email": "sarah.j@healthcare.com",
+        "phone": "+1 234-567-8901",
+        "specialty": "Cardiology",
+        "qualification": "MD, FACC",
+        "experience": "15 years",
+        "bio": "Experienced cardiologist specializing in preventive cardiology and heart disease management."
+    }
+
+    return render(request, "doctor_module/profile_edit.html", {"doctor": doctor})
